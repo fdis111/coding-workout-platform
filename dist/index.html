@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f8f8f6" />
-    <meta name="description" content="Pandas Quest - une leçon jouable à la fois." />
+    <meta name="description" content="Pandas Quest - apprendre pandas niveau par niveau." />
     <title>Pandas Quest</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,38 +12,30 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="lesson-app">
-      <header class="lesson-header">
-        <button class="close-button" id="restartBtn" aria-label="Recommencer le parcours">×</button>
-        <div class="segments" id="segments" aria-label="Progression de la leçon"></div>
-        <div class="energy"><b id="xpValue">0</b><span>ϟ</span></div>
-      </header>
-
-      <section class="lesson-content">
-        <p class="eyebrow" id="eyebrow">NIVEAU 1 · FILTRER</p>
-        <h1 id="title">Le carnet des bonnes ventes</h1>
-        <p class="story" id="story"></p>
-
-        <article class="data-card">
-          <div class="data-bar"><span>ventes_du_jour</span><small id="dataSize">4 lignes</small></div>
-          <div class="table-holder" id="dataTable"></div>
-        </article>
-
-        <section class="question-block">
-          <p class="question-number" id="questionNumber">DÉFI 1 · 10</p>
-          <h2 id="question">Quel code conserve uniquement les ventes au-dessus de 400 ?</h2>
-          <div class="choices" id="choices" role="radiogroup" aria-label="Choisis une réponse"></div>
-        </section>
-
-        <aside class="explanation" id="explanation" aria-live="polite">
-          <span id="explanationIcon">✦</span><p id="explanationText">Sélectionne une réponse pour continuer.</p>
-        </aside>
+    <main class="app-frame">
+      <section class="home-view view" id="homeView">
+        <header class="home-header"><a class="brand" href="#">pd <b>pandas quest</b></a><div class="xp-badge"><b id="homeXp">0</b><span>ϟ XP</span></div></header>
+        <div class="home-content">
+          <p class="eyebrow">PARCOURS D’APPRENTISSAGE</p>
+          <h1>Apprends pandas,<br />un réflexe à la fois.</h1>
+          <p class="intro">Cinq niveaux pour passer de la première sélection à un pipeline d’analyse complet.</p>
+          <div class="overall-progress"><span id="overallLabel">0 / 10 défis</span><div><i id="overallFill"></i></div></div>
+          <div class="level-list" id="levelList" aria-label="Tous les niveaux"></div>
+        </div>
       </section>
 
-      <footer class="lesson-footer">
-        <button class="why-button" id="whyBtn"><span>?</span> Explique-moi</button>
-        <button class="submit-button" id="submitBtn" disabled>Valider</button>
-      </footer>
+      <section class="lesson-view view hidden" id="lessonView">
+        <header class="lesson-header"><button class="back-button" id="homeBtn" aria-label="Retour aux niveaux">‹</button><div class="segments" id="segments" aria-label="Progression du niveau"></div><div class="energy"><b id="lessonXp">0</b><span>ϟ</span></div></header>
+        <div class="lesson-content">
+          <p class="eyebrow" id="eyebrow">NIVEAU 1 · FILTRER</p>
+          <h1 id="title">Le carnet des bonnes ventes</h1>
+          <p class="story" id="story"></p>
+          <article class="data-card"><div class="data-bar"><span>ventes_du_jour</span><small id="dataSize">4 lignes</small></div><div class="table-holder" id="dataTable"></div></article>
+          <section class="question-block"><p class="question-number" id="questionNumber">DÉFI 1 · 10</p><h2 id="question">Quel code conserve les ventes au-dessus de 400 ?</h2><label class="code-editor"><span>1</span><textarea id="answerInput" spellcheck="false" autocomplete="off" aria-label="Écris ta réponse pandas" placeholder="# écris ton code ici"></textarea></label></section>
+          <aside class="feedback" id="feedback" aria-live="polite"><span id="feedbackIcon">✦</span><p id="feedbackText">Écris ton code, puis valide ta réponse.</p></aside>
+        </div>
+        <footer class="lesson-footer"><button class="why-button" id="hintBtn"><span>?</span> Un indice</button><button class="submit-button" id="submitBtn">Valider</button></footer>
+      </section>
     </main>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="app.js"></script>
