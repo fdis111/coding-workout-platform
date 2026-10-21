@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a7b69" />
+    <meta name="description" content="Pandas Quest — pratique pandas par des défis courts et ludiques." />
+    <title>Pandas Quest — Apprendre pandas en jouant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#accueil" aria-label="Pandas Quest, accueil"><span class="brand-mark">pd</span><span>Pandas <b>Quest</b></span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#missions">Missions</a>
+        <a href="#carte">Carte</a>
+        <a href="#memo">Mémo</a>
+      </nav>
+      <button class="profile-pill" id="resetProgress" title="Réinitialiser la progression">
+        <span class="avatar">A</span><span id="levelLabel">Niv. 1</span>
+      </button>
+    </header>
+
+    <main id="accueil">
+      <section class="hero section-shell">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> laboratoire de pratique pandas</p>
+          <h1>Apprends pandas<br />en faisant <em>parler les données.</em></h1>
+          <p class="lede">Des mini-défis concrets, des retours immédiats et une progression qui te donne envie de revenir demain.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#missions">Lancer ma quête <span>→</span></a>
+            <button class="text-button" id="surpriseBtn">Défi surprise <span>⌘</span></button>
+          </div>
+          <div class="trust-row">
+            <div class="mini-avatars"><span>J</span><span>L</span><span>M</span></div>
+            <p><strong>12 840</strong> apprentis explorent déjà leurs DataFrames.</p>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Aperçu visuel d'un DataFrame traité">
+          <div class="spark spark-one"></div><div class="spark spark-two"></div><div class="spark spark-three"></div>
+          <div class="data-card">
+            <div class="window-bar"><i></i><i></i><i></i><span>ventes_q2.csv</span><b>⋯</b></div>
+            <div class="table-wrap hero-table">
+              <table><thead><tr><th>ville</th><th>produit</th><th>montant</th></tr></thead><tbody>
+                <tr><td>Kinshasa</td><td>🌿 Thé</td><td>420</td></tr><tr><td>Lubumbashi</td><td>☕ Café</td><td>680</td></tr><tr class="highlight-row"><td>Goma</td><td>🌿 Thé</td><td>510</td></tr><tr><td>Bukavu</td><td>🧃 Jus</td><td>245</td></tr>
+              </tbody></table>
+            </div>
+            <div class="code-snippet"><span>df</span><b>.query</b>(<i>"montant &gt; 400"</i>) <strong>✓</strong></div>
+          </div>
+          <div class="floating-badge"><span>✦</span><b>+25 XP</b><small>défi résolu</small></div>
+        </div>
+      </section>
+
+      <section class="stats-strip section-shell" aria-label="Votre progression">
+        <div class="stat-block"><span class="stat-icon coral">⚡</span><div><b id="xpValue">0 XP</b><small>expérience totale</small></div></div>
+        <div class="stat-block"><span class="stat-icon gold">🔥</span><div><b id="streakValue">0 jours</b><small>série en cours</small></div></div>
+        <div class="stat-block"><span class="stat-icon mint">◎</span><div><b id="solvedValue">0 / 8</b><small>défis terminés</small></div></div>
+        <div class="progress-block"><div class="progress-copy"><span>Prochain niveau</span><b id="progressText">0 / 180 XP</b></div><div class="progress-track"><div id="progressFill"></div></div></div>
+      </section>
+
+      <section id="missions" class="missions section-shell">
+        <div class="section-heading">
+          <div><p class="eyebrow"><span></span> parcours guidé</p><h2>Ta prochaine <em>mission</em></h2></div>
+          <div class="filter-tabs" role="tablist" aria-label="Filtrer les missions"><button class="active" data-filter="all">Tout</button><button data-filter="starter">Débuter</button><button data-filter="core">Fondamentaux</button><button data-filter="advanced">Explorer</button></div>
+        </div>
+        <div class="mission-layout">
+          <aside class="mission-rail" aria-label="Liste des missions" id="missionRail"></aside>
+          <article class="challenge-panel" id="challengePanel">
+            <div class="challenge-topline"><span id="challengeCategory">FONDAMENTAUX</span><span id="challengeStatus">01 / 08</span></div>
+            <div class="challenge-heading"><div><p class="challenge-kicker" id="challengeKicker">Mission 01 · Filtrer</p><h3 id="challengeTitle">Le comptoir des grandes ventes</h3></div><div class="xp-chip"><b id="challengeXP">25</b> XP</div></div>
+            <p class="challenge-text" id="challengeText"></p>
+            <div class="challenge-grid">
+              <section class="dataset-card"><div class="card-label"><span>Jeu de données</span><span class="dot-live">● prêt</span></div><div id="datasetTable"></div><p id="datasetHint"></p></section>
+              <section class="editor-card"><div class="card-label"><span>Ton notebook</span><span class="file-name">solution.py</span></div><label class="code-editor"><span class="line-number">1</span><textarea id="codeInput" spellcheck="false" aria-label="Éditeur de code pandas"></textarea></label><div class="editor-footer"><span><kbd>⌘</kbd> <kbd>↵</kbd> pour vérifier</span><button class="button button-dark" id="runBtn">Vérifier <span>↵</span></button></div></section>
+            </div>
+            <div class="result-box" id="resultBox" aria-live="polite"><span class="result-icon">✦</span><div><b>Prête à analyser.</b><p>Écris une solution puis vérifie-la : on te dira exactement ce qui fonctionne.</p></div></div>
+            <div class="challenge-actions"><button class="hint-button" id="hintBtn">💡 Voir un indice <span id="hintCost">−5 XP</span></button><button class="skip-button" id="skipBtn">Passer cette mission →</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="carte" class="skill-section section-shell">
+        <div class="section-heading"><div><p class="eyebrow"><span></span> carte de compétences</p><h2>Construis ton <em>réflexe data.</em></h2></div><p class="section-note">Chaque territoire condense une idée du mémo Pandas en une compétence praticable.</p></div>
+        <div class="skill-map" id="skillMap"></div>
+      </section>
+
+      <section class="daily section-shell">
+        <div class="daily-copy"><p class="eyebrow"><span></span> rendez-vous quotidien</p><h2>Le défi du jour<br /><em>en 3 minutes.</em></h2><p>Une micro-situation renouvelée pour entretenir ton automatisme. Ta série démarre avec la première réponse juste.</p><button class="button button-primary" id="dailyBtn">Jouer le défi du jour <span>→</span></button></div>
+        <div class="daily-card"><div class="daily-date"><span>AUJOURD'HUI</span><b id="dailyDate">—</b><i>3 min</i></div><div class="daily-glyph">⌁</div><p class="daily-tag">Manipulation de texte</p><h3>Normalise les noms de produits.</h3><div class="daily-code"><span>s.</span><b>str</b>.<strong>title</strong>()</div><div class="daily-reward"><span>Récompense</span><b>40 XP</b><i>✦</i></div></div>
+      </section>
+
+      <section id="memo" class="reference section-shell">
+        <div class="reference-copy"><p class="eyebrow"><span></span> ton anti-sèche vivante</p><h2>Le mémo, mais<br /><em>actionnable.</em></h2><p>Explore les commandes les plus utiles du guide, classées par intention plutôt que par une longue liste à mémoriser.</p></div>
+        <div class="reference-grid" id="referenceGrid"></div>
+      </section>
+    </main>
+
+    <footer><a class="brand" href="#accueil"><span class="brand-mark">pd</span><span>Pandas <b>Quest</b></span></a><p>Apprendre en pratiquant, une ligne à la fois.</p><button id="soundBtn" aria-label="Activer les sons">♪ sons off</button></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
