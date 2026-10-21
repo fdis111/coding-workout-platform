@@ -3,57 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#121b2d" />
-    <meta name="description" content="Pandas Quest : des défis courts, un à la fois." />
-    <title>Pandas Quest — Un défi à la fois</title>
+    <meta name="theme-color" content="#f8f8f6" />
+    <meta name="description" content="Pandas Quest - une leçon jouable à la fois." />
+    <title>Pandas Quest</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <header class="app-header">
-        <a class="wordmark" href="#" aria-label="Pandas Quest, recommencer"><span>pd</span>pandas quest</a>
-        <div class="path-progress" aria-label="Progression du parcours"><p id="levelName">Niveau 1 · Premiers pas</p><div class="progress-line"><i id="progressLine"></i></div><small id="stepLabel">Défi 1 sur 10</small></div>
-        <button class="score" id="resetBtn" title="Réinitialiser la progression"><span class="bolt">✦</span><b id="xp">0</b><small>XP</small></button>
+    <main class="lesson-app">
+      <header class="lesson-header">
+        <button class="close-button" id="restartBtn" aria-label="Recommencer le parcours">×</button>
+        <div class="segments" id="segments" aria-label="Progression de la leçon"></div>
+        <div class="energy"><b id="xpValue">0</b><span>ϟ</span></div>
       </header>
 
-      <main class="challenge-screen">
-        <section class="lesson-panel">
-          <div class="lesson-meta"><span class="level-tag" id="levelTag">NIVEAU 01</span><span class="dot-separator">•</span><span id="topic">FILTRER</span></div>
-          <h1 id="title">Trouve les ventes qui comptent.</h1>
-          <p class="prompt" id="prompt"></p>
-          <div class="data-stage" aria-live="polite">
-            <div class="data-caption"><span>APERÇU DU DATAFRAME</span><span id="rowCount">4 lignes</span></div>
-            <div class="data-table-wrap" id="dataTable"></div>
-          </div>
-          <button class="hint-trigger" id="hintBtn"><span>?</span> Besoin d’un indice</button>
-          <p class="hint-text" id="hintText" aria-live="polite"></p>
+      <section class="lesson-content">
+        <p class="eyebrow" id="eyebrow">NIVEAU 1 · FILTRER</p>
+        <h1 id="title">Le carnet des bonnes ventes</h1>
+        <p class="story" id="story"></p>
+
+        <article class="data-card">
+          <div class="data-bar"><span>ventes_du_jour</span><small id="dataSize">4 lignes</small></div>
+          <div class="table-holder" id="dataTable"></div>
+        </article>
+
+        <section class="question-block">
+          <p class="question-number" id="questionNumber">DÉFI 1 · 10</p>
+          <h2 id="question">Quel code conserve uniquement les ventes au-dessus de 400 ?</h2>
+          <div class="choices" id="choices" role="radiogroup" aria-label="Choisis une réponse"></div>
         </section>
 
-        <section class="answer-panel" aria-label="Ta réponse">
-          <div class="answer-heading"><div><p>TA RÉPONSE</p><h2>Écris la ligne de code.</h2></div><span class="keyboard">⌘ ↵</span></div>
-          <label class="editor" for="answerInput"><span class="line">1</span><textarea id="answerInput" spellcheck="false" autocomplete="off" aria-label="Ta réponse pandas"></textarea></label>
-          <button class="check-button" id="checkBtn">Vérifier <span>→</span></button>
-          <div class="feedback" id="feedback" aria-live="polite"><span class="feedback-symbol">✦</span><p>Chaque essai te rapproche de la bonne intuition.</p></div>
-          <div class="lesson-foot"><span class="tiny-orb"></span><span id="microConcept">Idée-clé : une condition produit une série de True / False.</span></div>
-        </section>
-      </main>
+        <aside class="explanation" id="explanation" aria-live="polite">
+          <span id="explanationIcon">✦</span><p id="explanationText">Sélectionne une réponse pour continuer.</p>
+        </aside>
+      </section>
 
-      <footer class="app-footer"><p id="chapterLabel">Chapitre 1 / 5 — Explorer une table</p><div class="level-dots" id="levelDots" aria-label="Les cinq niveaux"></div><button id="skipBtn">Passer ce défi</button></footer>
-    </div>
-
-    <section class="success-overlay" id="successOverlay" aria-hidden="true">
-      <div class="success-card">
-        <div class="success-mark">✓</div>
-        <p class="level-up-label" id="successKicker">CONCEPT COMPRIS</p>
-        <h2 id="successTitle">C’est exactement ça.</h2>
-        <p id="successBody">Tu viens de sélectionner des observations avec une condition booléenne.</p>
-        <div class="earned"><span>+<b id="earnedXp">20</b> XP</span><i>·</i><small id="streakText">Série : 1 défi</small></div>
-        <button class="continue-button" id="continueBtn">Continuer <span>→</span></button>
-      </div>
-    </section>
+      <footer class="lesson-footer">
+        <button class="why-button" id="whyBtn"><span>?</span> Explique-moi</button>
+        <button class="submit-button" id="submitBtn" disabled>Valider</button>
+      </footer>
+    </main>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="app.js"></script>
   </body>
